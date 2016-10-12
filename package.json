@@ -1,0 +1,28 @@
+{
+  "name": "d3-plot",
+  "version": "0.0.1",
+  "description": "Plots a given array of nodes to a given line",
+  "keywords": [
+    "d3",
+    "d3-plugin"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-plot.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/dbarton-uk/d3-plot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbarton-uk/d3-plot.git"
+  },
+  "scripts": {
+    "build": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-plot.js -- index.js",
+    "test":  "npm run build && tape 'test/**/*-test.js'",
+    "uglify": "npm run test && uglifyjs build/d3-plot.js -c -m -o build/d3-plot.min.js",
+    "publish": "npm run uglify && zip -j build/d3-plot.zip -- LICENSE README.md build/d3-plot.js build/d3-plot.min.js"
+  },
+  "devDependencies": {
+    "rollup": "0.36.3",
+    "tape": "4.6.2",
+    "uglify-js": "2.7.3"
+  }
+}

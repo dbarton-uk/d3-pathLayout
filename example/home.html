@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="../build/d3-plot.js"></script>
+
+    <script>
+
+        var outerWidth  = 960,
+            outerHeight = 500;
+
+        var margin = {
+            top   : 20,
+            right : 10,
+            bottom: 20,
+            left  : 10
+        };
+
+        var width  = outerWidth - margin.left - margin.right,
+            height = outerHeight - margin.top - margin.bottom;
+
+
+        var svg = d3.select("body").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        console.log(d3.plot().hello());
+
+    </script>
+</body>
