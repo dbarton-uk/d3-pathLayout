@@ -1,12 +1,23 @@
 var test = require("tape").test,
-    plot = require("../");
+    plot = require("../").plot();
 
-test("The 'hello' method:", function (t) {
+var nodes = buildNodes(10);
 
-    var actual   = plot.plot().hello();
-    var expected = "Hello World!";
+test("The 'plot' class:", function (t) {
 
-    t.equal(actual, expected, "- should return 'Hello World!'");
+    t.equal(plot.nodes(nodes).nodes(), nodes, '- can set and get nodes');
     t.end();
+
 });
+
+function buildNodes(n) {
+
+    var nodes = [];
+
+    for (var i = 0; i < n; i++)
+        nodes.push({});
+
+    return nodes;
+
+}
 

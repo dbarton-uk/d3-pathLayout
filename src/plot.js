@@ -3,8 +3,12 @@ var Plot = (function () {
     var plot = function () {
     };
 
-    plot.prototype.hello = function () {
-        return "Hello World!";
+    plot.prototype.nodes = function (_) {
+
+        if (!_) return this.x;
+
+        this.x = _;
+        return (this);
     };
 
     return plot;
