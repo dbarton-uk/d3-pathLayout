@@ -1,7 +1,12 @@
-var tape = require("tape"),
+var test = require("tape").test,
     plot = require("../");
 
-tape("hello() returns Hello World!", function (test) {
-    test.equal(plot.plot().hello(), "Hello World!");
-    test.end();
+test("The 'hello' method:", function (t) {
+
+    var actual   = plot.plot().hello();
+    var expected = "Hello World!";
+
+    t.equal(actual, expected, "- should return 'Hello World!'");
+    t.end();
 });
+
