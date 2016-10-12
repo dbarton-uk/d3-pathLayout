@@ -1,23 +1,20 @@
 var test = require("tape").test,
-    plot = require("../").plot();
+    plot = require("../").plot(),
+    data = require("./test-data").TestData;
 
-var nodes = buildNodes(10);
+var nodes = data.buildNodes(10);
+var line = data.line;
 
-test("The 'plot' class:", function (t) {
 
+test("The 'nodes' method:", function(t) {
     t.equal(plot.nodes(nodes).nodes(), nodes, '- can set and get nodes');
     t.end();
-
 });
 
-function buildNodes(n) {
+test("The 'lines' method:", function(t) {
+    t.equal(plot.line(line).line(), line, '- can set and get a line');
+    t.end();
+});
 
-    var nodes = [];
 
-    for (var i = 0; i < n; i++)
-        nodes.push({});
-
-    return nodes;
-
-}
 

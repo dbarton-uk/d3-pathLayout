@@ -5,9 +5,17 @@ var Plot = (function () {
 
     plot.prototype.nodes = function (_) {
 
-        if (!_) return this.x;
+        if (!_) return this._nodes;
 
-        this.x = _;
+        this._nodes = _;
+        return (this);
+    };
+
+    plot.prototype.line = function (_) {
+
+        if (!_) return this._line;
+
+        this._line = _;
         return (this);
     };
 
