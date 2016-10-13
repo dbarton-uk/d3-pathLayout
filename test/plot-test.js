@@ -5,14 +5,19 @@ var test = require("tape").test,
 var nodes = data.buildNodes(10);
 var line = data.line;
 
-
 test("The 'nodes' method:", function(t) {
-    t.equal(plot.nodes(nodes).nodes(), nodes, '- can set and get nodes');
+
+    var actual = plot.nodes(nodes).nodes();
+
+    t.equal(actual, nodes, '- can set and get nodes');
     t.end();
 });
 
 test("The 'lines' method:", function(t) {
-    t.equal(plot.line(line).line(), line, '- can set and get a line');
+
+    var actual = plot.line(line).line();
+
+    t.equal(actual, line, '- can set and get a line');
     t.end();
 });
 
