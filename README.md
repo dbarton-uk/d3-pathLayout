@@ -1,6 +1,6 @@
 # d3-pathLayout
 
-Sets the coordinates of an array of nodes to given SVG path string.
+Sets the coordinates of an array of nodes based on the given SVG path string.
 
 Please see .... for an example.
 
@@ -22,7 +22,7 @@ var layout = d3.pathLayout(args);
 
 ## API Reference
 
-<a href="#pathLayout" name="pathLayout">#</a> <b>pathLayout</b>()
-Sets the coordinates of an array of nodes to given SVG path string.
+<a href="#pathLayout" name="pathLayout">#</a> <b>pathLayout(<i>args</i>)</b>()
+Sets the coordinates of an array of nodes based on the given SVG path string.
 
 ....
