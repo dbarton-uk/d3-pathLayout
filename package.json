@@ -24,6 +24,6 @@
     "rollup": "0.36.3",
     "tape": "4.6.2",
     "uglify-js": "2.7.3",
-    "d3-path": "1.0.2"
+    "d3-path": "latest"
   }
 }
