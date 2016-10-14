@@ -1,6 +1,11 @@
 var PathLayout = (function () {
 
-    var pathLayout = function () {
+    var pathLayout = function (_) {
+
+        _ = _ || {};
+
+        this._nodes = _.nodes || [];
+        this._path = _.path;
     };
 
     pathLayout.prototype.nodes = function (_) {
@@ -23,8 +28,8 @@ var PathLayout = (function () {
 
 }());
 
-var pathLayout = function () {
-    return new PathLayout();
+var pathLayout = function (_) {
+    return new PathLayout(_ || {});
 };
 
 export { pathLayout }
