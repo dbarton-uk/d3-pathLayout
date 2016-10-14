@@ -1,5 +1,5 @@
 var test = require("tape").test,
-    plot = require("../").plot(),
+    layout = require("../").pathLayout(),
     data = require("./test-data").TestData;
 
 var nodes = data.buildNodes(10);
@@ -7,7 +7,7 @@ var line = data.line;
 
 test("The 'nodes' method:", function(t) {
 
-    var actual = plot.nodes(nodes).nodes();
+    var actual = layout.nodes(nodes).nodes();
 
     t.equal(actual, nodes, '- can set and get nodes');
     t.end();
@@ -15,7 +15,7 @@ test("The 'nodes' method:", function(t) {
 
 test("The 'lines' method:", function(t) {
 
-    var actual = plot.line(line).line();
+    var actual = layout.line(line).line();
 
     t.equal(actual, line, '- can set and get a line');
     t.end();

@@ -1,24 +1,24 @@
 {
-  "name": "d3-plot",
+  "name": "d3-pathLayout",
   "version": "0.0.1",
-  "description": "Plots a given array of nodes to a given line",
+  "description": "Sets the coordinates of an array of nodes to given SVG path string.",
   "keywords": [
     "d3",
     "d3-plugin"
   ],
   "license": "BSD-3-Clause",
-  "main": "build/d3-plot.js",
+  "main": "build/d3-pathLayout.js",
   "jsnext:main": "index",
-  "homepage": "https://github.com/dbarton-uk/d3-plot",
+  "homepage": "https://github.com/dbarton-uk/d3-pathLayout",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dbarton-uk/d3-plot.git"
+    "url": "https://github.com/dbarton-uk/d3-pathLayout.git"
   },
   "scripts": {
-    "build": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-plot.js -- index.js",
+    "build": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-pathLayout.js -- index.js",
     "test":  "npm run build && tape 'test/**/*-test.js'",
-    "uglify": "npm run test && uglifyjs build/d3-plot.js -c -m -o build/d3-plot.min.js",
-    "publish": "npm run uglify && zip -j build/d3-plot.zip -- LICENSE README.md build/d3-plot.js build/d3-plot.min.js"
+    "uglify": "npm run test && uglifyjs build/d3-pathLayout.js -c -m -o build/d3-pathLayout.min.js",
+    "publish": "npm run uglify && zip -j build/d3-pathLayout.zip -- LICENSE README.md build/d3-pathLayout.js build/d3-pathLayout.min.js"
   },
   "devDependencies": {
     "rollup": "0.36.3",

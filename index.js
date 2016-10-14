@@ -1,1 +1,1 @@
-export {plot} from "./src/plot";
+export { pathLayout } from "./src/pathLayout";
