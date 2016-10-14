@@ -3,7 +3,7 @@ var test = require("tape").test,
     data = require("./test-data").TestData;
 
 var nodes = data.buildNodes(10);
-var line = data.line;
+var path = data.path;
 
 test("The 'nodes' method:", function(t) {
 
@@ -13,11 +13,11 @@ test("The 'nodes' method:", function(t) {
     t.end();
 });
 
-test("The 'lines' method:", function(t) {
+test("The 'path' method:", function(t) {
 
-    var actual = layout.line(line).line();
+    var actual = layout.path(path).path();
 
-    t.equal(actual, line, '- can set and get a line');
+    t.equal(actual, path, '- can set and get a path');
     t.end();
 });
 

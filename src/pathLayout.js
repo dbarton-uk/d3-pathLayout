@@ -11,11 +11,11 @@ var PathLayout = (function () {
         return (this);
     };
 
-    pathLayout.prototype.line = function (_) {
+    pathLayout.prototype.path = function (_) {
 
-        if (!_) return this._line;
+        if (!_) return this._path;
 
-        this._line = _;
+        this._path = _;
         return (this);
     };
 

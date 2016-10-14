@@ -1,6 +1,6 @@
 # d3-plot
 
-...
+Sets the coordinates of an array of nodes to given SVG path string.
 
 ## Installing
 

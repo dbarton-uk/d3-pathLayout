@@ -10,7 +10,7 @@ var TestData = {
 
     },
 
-    line: [
+    path: [
         [20, 100], [200, 100]
     ]
 
