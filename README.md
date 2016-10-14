@@ -1,15 +1,28 @@
-# d3-plot
+# d3-pathLayout
 
 Sets the coordinates of an array of nodes to given SVG path string.
 
+Please see .... for an example.
+
 ## Installing
 
-If you use NPM, `npm install d3-plot`. Otherwise, download the [latest release](https://github.com/dbarton-uk/d3-plot/).
+If you use NPM, `npm install d3-pathLayout`. Otherwise, download the [latest release](https://github.com/dbarton-uk/d3-pathLayout/).
+
+## Example Usage
+
+
+```js
+var args = {
+    node : nodes,
+    path: path
+}
+
+var layout = d3.pathLayout(args);
+```
 
 ## API Reference
 
-YOUR API DOCUMENTATION HERE. Use bold for symbols (such as constructor and method names) and italics for instances. See the other D3 modules for examples.
+<a href="#pathLayout" name="pathLayout">#</a> <b>pathLayout</b>()
+Sets the coordinates of an array of nodes to given SVG path string.
 
-<a href="#foo" name="foo">#</a> <b>foo</b>()
-
-Computes the answer to the ultimate question of life, the universe, and everything.
+....
