@@ -24,12 +24,23 @@ var PathLayout = (function () {
         return (this);
     };
 
+    pathLayout.prototype.run = function () {
+
+        this._nodes.forEach(function(n) {
+            n.x = 0;
+            n.y = 0;
+        });
+
+        return this;
+
+    };
+
     return pathLayout;
 
 }());
 
 var pathLayout = function (_) {
-    return new PathLayout(_ || {});
+    return new PathLayout(_ || {}).run();
 };
 
 export { pathLayout }
