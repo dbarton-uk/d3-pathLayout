@@ -1,3 +1,5 @@
+var d3 = require("d3-path");
+
 var TestData = {
     buildNodes: function (n) {
 
@@ -10,9 +12,17 @@ var TestData = {
 
     },
 
-    path: [
-        [20, 100], [200, 100]
-    ]
+    buildPath: function () {
+
+        var path = d3.path();
+
+        path.moveTo(100, 100);
+        path.lineTo(200, 200);
+
+        return path;
+
+    }
 
 };
+
 exports.TestData = TestData;

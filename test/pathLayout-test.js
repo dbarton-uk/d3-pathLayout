@@ -3,7 +3,7 @@ var test   = require("tape").test,
     data   = require("./test-data").TestData;
 
 var nodes = data.buildNodes(10);
-var path  = data.path;
+var path  = data.buildPath();
 
 test("The 'pathLayout' class constructor:", function (t) {
 
