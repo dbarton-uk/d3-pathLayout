@@ -28,6 +28,21 @@
 
         var n = [{}, {}];
 
+
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", 'M100,100 L200,100');
+
+        var pathLength = path.getTotalLength();
+        var increment = pathLength / 10;
+
+        for (var i = 0; i <= pathLength; i = i + increment) {
+            console.log(path.getPointAtLength(i));
+        }
+
+
+
+
+
         console.log(d3.pathLayout().nodes(n).nodes());
 
     </script>

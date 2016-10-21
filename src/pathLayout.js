@@ -26,9 +26,19 @@ var PathLayout = (function () {
 
     pathLayout.prototype.run = function () {
 
-        this._nodes.forEach(function(n) {
-            n.x = 0;
-            n.y = 0;
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", this._path);
+
+        var pathLength = path.getTotalLength();
+        var nodeCount = this._nodes.length;
+
+        this._nodes.forEach(function(n, i) {
+
+            var pathLengthForNode = (pathLength / nodeCount) * i;
+
+            var point = path.getPointAtLength(pathLengthForNode);
+            n.x = point.x;
+            n.y = point.y;
         });
 
         return this;

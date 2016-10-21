@@ -2,8 +2,11 @@ var test   = require("tape").test,
     module = require("../"),
     data   = require("./test-data").TestData;
 
+global.document = require("./fakes");
+
 var nodes = data.buildNodes(10);
 var path  = data.buildPath();
+
 
 test("The 'pathLayout' class constructor:", function (t) {
 
@@ -40,20 +43,26 @@ test("The 'path' method:", function (t) {
     t.end();
 });
 
-test("The functionality:", function(t) {
+test("The 'run' method:", function (t) {
 
     var args = {
         nodes: nodes,
-        path: path
+        path : path
     };
 
     module.pathLayout(args);
 
-    t.equal(nodes[0].x, 0);
-    t.equal(nodes[0].y, 0);
+    var increment = 10;
+
+    for (var i = 0; i < nodes.length; i++) {
+
+        var x = 100 + (increment * i);
+
+        t.equal(nodes[i].x, x, '- correctly sets x coordinate');
+        t.equal(nodes[i].y, 100, '- correctly sets x coordinate');
+    }
 
     t.end();
-
 });
 
 
