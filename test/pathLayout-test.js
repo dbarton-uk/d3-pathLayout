@@ -5,24 +5,30 @@ var test   = require("tape").test,
 global.document = require("./fakes");
 
 
-test("The 'pathLayout' class constructor:", function (t) {
+test("The 'pathLayout' function with no arguments:", function (t) {
+
+    var layout = module.pathLayout();
+
+    t.deepEqual(layout.nodes(), [], '- sets the nodes to an empty array.');
+    t.equal(layout.path(), undefined, '- sets the path to undefined.');
+
+    t.end();
+
+});
+
+test("The 'pathLayout' function with arguments:", function (t) {
 
     var testData = data.buildTestData();
     var nodes    = testData.nodes;
     var path     = testData.path;
 
-    var layout = module.pathLayout();
-
-    t.deepEqual(layout._nodes, [], '- sets the nodes to an empty array if undefined.');
-    t.equal(layout._path, undefined, '- sets the path to undefined if undefined.');
-
-    layout = module.pathLayout({
+    var layout = module.pathLayout({
         nodes: nodes,
         path : path
     });
 
-    t.equal(layout._nodes, nodes, '- sets the nodes to the nodes passed in.');
-    t.equal(layout._path, path, '- sets the path to the path passed in.');
+    t.equal(layout.nodes(), nodes, '- sets the nodes to nodes passed in constructor.');
+    t.equal(layout.path(), path, '- sets the path to the path passed in constructor.');
 
     data.testLayout(t, testData);
 
@@ -30,23 +36,22 @@ test("The 'pathLayout' class constructor:", function (t) {
 
 });
 
-test("The getter and setter methods :", function (t) {
+test("The 'pathLayout' function, using the set methods:", function (t) {
 
     var testData = data.buildTestData();
     var nodes    = testData.nodes;
     var path     = testData.path;
-
 
     var layout = module.pathLayout()
                        .nodes(nodes)
                        .path(path);
 
-    t.equal(layout.nodes(), nodes, '- can set and get nodes');
-    t.equal(layout.path(), path, '- can set and get a path');
+
+    t.equal(layout.nodes(), nodes, '- sets the nodes to the nodes passed in.');
+    t.equal(layout.path(), path, '- sets the path to the passed in.');
 
     data.testLayout(t, testData);
 
     t.end();
+
 });
-
-

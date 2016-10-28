@@ -1,1 +1,1 @@
-export { pathLayout } from "./src/pathLayout";
+export { default as pathLayout } from "./src/pathLayout";
