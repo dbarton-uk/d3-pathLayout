@@ -1,8 +1,35 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    #selection {
+        height: 100%;
+        width: 400px;
+        background-color: red;
+        float: left;
+    }
+
+    #content {
+        height: 100%;
+        background-color: blue;
+    }
+
+    .node {
+        alignment-baseline: middle;
+        text-anchor: middle;
+    }
+
+</style>
+
 <body>
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <script src="../build/d3-pathLayout.js"></script>
+
 
     <script>
 
@@ -19,16 +46,65 @@
         var width  = outerWidth - margin.left - margin.right,
             height = outerHeight - margin.top - margin.bottom;
 
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var svg = d3.select("body").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var n = [{}, {}];
+        var text  = "Hello D3 World!".split('');
+        var nodes = [];
 
-        console.log(d3.pathLayout().nodes(n).nodes());
+        text.forEach(function (t) {
+            nodes.push({letter: t});
+        });
+
+        svg.nodes = svg.selectAll('.node')
+                       .data(nodes)
+                       .enter()
+                       .append("text")
+                       .text(function (d) { return d.letter; })
+                       .attr("class", "node");
+
+        var horizontalPath = d3.path();
+
+        horizontalPath.moveTo(100, 100);
+        horizontalPath.lineTo(300, 100);
+
+        var layout = d3.pathLayout({
+            nodes: nodes,
+            path : horizontalPath
+        });
+
+        updateNodes();
+
+        function updateNodes() {
+
+            svg.nodes
+               .transition()
+               .duration(2000)
+               .attr("x", function (d) { return d.x; })
+               .attr("y", function (d) { return d.y; });
+
+
+        }
+
+        var verticalPath = d3.path();
+        verticalPath.moveTo(100, 100);
+        verticalPath.lineTo(100, 300);
+
+        setTimeout(function() {
+            layout.path(verticalPath);
+            updateNodes();
+        }, 2000);
+
+        setTimeout(function() {
+            layout.path(horizontalPath);
+            updateNodes();
+        }, 4000);
+
 
     </script>
 </body>
