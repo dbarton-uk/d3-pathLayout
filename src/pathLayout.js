@@ -6,6 +6,7 @@ var PathLayout = (function () {
 
         this._nodes = _.nodes || [];
         this._path = _.path;
+
     };
 
     pathLayout.prototype.nodes = function (_) {
@@ -13,7 +14,7 @@ var PathLayout = (function () {
         if (!_) return this._nodes;
 
         this._nodes = _;
-        return (this);
+        return (this.run());
     };
 
     pathLayout.prototype.path = function (_) {
@@ -21,7 +22,7 @@ var PathLayout = (function () {
         if (!_) return this._path;
 
         this._path = _;
-        return (this);
+        return (this.run());
     };
 
     pathLayout.prototype.run = function () {

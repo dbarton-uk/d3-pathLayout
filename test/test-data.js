@@ -1,26 +1,51 @@
 var _path = require("d3-path").path;
 
 var TestData = {
-    buildNodes: function (n) {
 
-        var nodes = [];
+    buildTestData: function() {
 
-        for (var i = 0; i < n; i++)
-            nodes.push({});
+        return {
+            nodes: buildNodes(10),
+            path : buildPath()
+        };
 
-        return nodes;
+        function buildNodes(n) {
+
+            var nodes = [];
+
+            for (var i = 0; i < n; i++)
+                nodes.push({});
+
+            return nodes;
+
+        }
+
+        function buildPath() {
+
+            var path = _path();
+
+            path.moveTo(100, 100);
+            path.lineTo(200, 200);
+
+            return path;
+
+        }
 
     },
 
-    buildPath: function () {
+    testLayout: function(t, d) {
 
-        var path = _path();
+        var nodes = d.nodes;
 
-        path.moveTo(100, 100);
-        path.lineTo(200, 200);
+        var increment = 10;
 
-        return path;
+        for (var i = 0; i < nodes.length; i++) {
 
+            var x = 100 + (increment * i);
+
+            t.equal(nodes[i].x, x, '- correctly sets x coordinate');
+            t.equal(nodes[i].y, 100, '- correctly sets y coordinate');
+        }
     }
 
 };
