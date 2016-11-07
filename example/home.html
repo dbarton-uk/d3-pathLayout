@@ -20,8 +20,14 @@
     }
 
     .node {
-        alignment-baseline: middle;
+        alignment-baseline: after-edge;
         text-anchor: middle;
+    }
+
+    .path {
+        stroke: grey;
+        stroke-dasharray: 5;
+
     }
 
 </style>
@@ -61,50 +67,68 @@
             nodes.push({letter: t});
         });
 
-        svg.nodes = svg.selectAll('.node')
+
+        svg.g = svg.append("g")
+                   .attr("transform", "translate(100, 200)");
+
+        svg.nodes = svg.g.selectAll('.node')
                        .data(nodes)
                        .enter()
                        .append("text")
-                       .text(function (d) { return d.letter; })
+                       .text(function (d) {
+                           return d.letter;
+                       })
                        .attr("class", "node");
+
+        svg.g.path = svg.append("path")
+                      .attr("class", "path");
 
         var horizontalPath = d3.path();
 
-        horizontalPath.moveTo(100, 100);
-        horizontalPath.lineTo(300, 100);
-
-        var layout = d3.pathLayout({
-            nodes: nodes,
-            path : horizontalPath
-        });
-
-        updateNodes();
-
-        function updateNodes() {
-
-            svg.nodes
-               .transition()
-               .duration(2000)
-               .attr("x", function (d) { return d.x; })
-               .attr("y", function (d) { return d.y; });
-
-
-        }
+        horizontalPath.moveTo(0, 0);
+        horizontalPath.lineTo(200, 0);
 
         var verticalPath = d3.path();
         verticalPath.moveTo(100, 100);
         verticalPath.lineTo(100, 300);
 
-        setTimeout(function() {
-            layout.path(verticalPath);
-            updateNodes();
-        }, 2000);
+        var circle = d3.arc()
+                       .innerRadius(0)
+                       .outerRadius(50)
+                       .startAngle(0)
+                       .endAngle(Math.PI / 2)();
 
-        setTimeout(function() {
-            layout.path(horizontalPath);
-            updateNodes();
-        }, 4000);
+        svg.nodes
+           .transition()
+           .on("start", function repeat() {
 
+               d3.active(this)
+                 .call(transitionToPath, horizontalPath)
+                 .transition()
+                 .call(transitionToPath, verticalPath)
+                 .transition()
+                 .call(transitionToPath, circle)
+                 .transition()
+                 .on("start", repeat)
+           });
+
+        function transitionToPath(transition, path) {
+
+            d3.pathLayout({
+                nodes: nodes,
+                path : path
+            });
+
+            transition
+                    .duration(2000)
+                    .attr("x", function (d) {
+                        return d.x;
+                    })
+                    .attr("y", function (d) {
+                        return d.y;
+                    });
+
+        }
 
     </script>
 </body>
