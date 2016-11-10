@@ -2,9 +2,8 @@
 <meta charset="utf-8">
 
 <style>
-
     .node {
-        fill:blue;
+        fill: blue;
         text-anchor: middle;
     }
 
@@ -13,7 +12,6 @@
         stroke-dasharray: 2;
         fill: none;
     }
-
 </style>
 
 <body>
@@ -74,19 +72,21 @@
         cubicBezier2.bezierCurveTo(250, 300, 350, 100, 400, 200);
 
         var paths = [
-                horizontalPath,
-                verticalPath,
-                diagonalPath,
-                circle,
-                cubicBezier1,
-                cubicBezier2
+            horizontalPath,
+            verticalPath,
+            diagonalPath,
+            circle,
+            cubicBezier1,
+            cubicBezier2
         ];
 
         svg.selectAll(".path")
            .data(paths)
            .enter()
            .append("path")
-           .attr("d", function(d) { return d; })
+           .attr("d", function (d) {
+               return d;
+           })
            .attr("class", "path");
 
         svg.nodes = svg.selectAll('.node')
@@ -102,11 +102,11 @@
 
                            var transition = d3.active(this);
 
-                           paths.forEach(function(p) {
+                           paths.forEach(function (p) {
                                transition = transition.call(transitionToPath, p).transition();
                            });
                            transition.on("start", repeat);
-           });
+                       });
 
         function transitionToPath(transition, path) {
 
