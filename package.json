@@ -1,7 +1,7 @@
 {
   "name": "d3-pathLayout",
-  "version": "0.0.1",
-  "description": "Sets the coordinates of an array of nodes based on the given SVG path string.",
+  "version": "1",
+  "description": "d3.js plugin that maps the coordinates of an array of nodes, to points on a given SVG path string.",
   "keywords": [
     "d3",
     "d3-plugin"
