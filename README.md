@@ -9,7 +9,7 @@ Please see .... for an example.
 
 ## Installing
 
-If you use NPM, `npm install d3-pathLayout`. Otherwise, download the [latest release](https://github.com/dbarton-uk/d3-pathLayout/).
+If you use NPM, `npm install d3-pathLayout`. Otherwise, download the [latest release](https://github.com/dbarton-uk/d3-pathLayout/releases/latest).
 
 ## Example Usage
 
