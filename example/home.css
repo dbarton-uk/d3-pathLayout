@@ -1,0 +1,10 @@
+.node {
+    fill: blue;
+    text-anchor: middle;
+}
+
+.path {
+    stroke: lightblue;
+    stroke-dasharray: 2;
+    fill: none;
+}
