@@ -18,8 +18,7 @@
     "build": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-pathLayout.js -- index.js",
     "test":  "npm run build && tape 'test/**/*-test.js'",
     "uglify": "npm run test && uglifyjs build/d3-pathLayout.js -c -m -o build/d3-pathLayout.min.js",
-    "zip": "npm run uglify && zip -j build/d3-pathLayout.zip -- LICENSE README.md build/d3-pathLayout.js build/d3-pathLayout.min.js",
-    "version": "npm run zip && git add build/d3-pathLayout.js build/d3-pathLayout.min.js build/d3-pathLayout.zip"
+    "zip": "npm run uglify && zip -j build/d3-pathLayout.zip -- LICENSE README.md build/d3-pathLayout.js build/d3-pathLayout.min.js"
   },
   "devDependencies": {
     "rollup": "0.36.3",
