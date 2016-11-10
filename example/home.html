@@ -20,13 +20,13 @@
     }
 
     .node {
-        alignment-baseline: after-edge;
         text-anchor: middle;
     }
 
     .path {
-        stroke: grey;
-        stroke-dasharray: 5;
+        stroke: lightblue;
+        stroke-dasharray: 2;
+        fill: none;
 
     }
 
@@ -35,7 +35,6 @@
 <body>
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <script src="../build/d3-pathLayout.js"></script>
-
 
     <script>
 
@@ -67,49 +66,62 @@
             nodes.push({letter: t});
         });
 
+        var horizontalPath = d3.path();
+        horizontalPath.moveTo(200, 200);
+        horizontalPath.lineTo(400, 200);
 
-        svg.g = svg.append("g")
-                   .attr("transform", "translate(100, 200)");
+        var verticalPath = d3.path();
+        verticalPath.moveTo(300, 100);
+        verticalPath.lineTo(300, 300);
 
-        svg.nodes = svg.g.selectAll('.node')
+        var diagonalPath = d3.path();
+        diagonalPath.moveTo(200, 100);
+        diagonalPath.lineTo(400, 300);
+
+        var circle = d3.path();
+        circle.arc(300, 200, 50, Math.PI, Math.PI * 3);
+
+        var cubicBezier1 = d3.path();
+        cubicBezier1.moveTo(200, 200);
+        cubicBezier1.bezierCurveTo(250, 100, 350, 300, 400, 200);
+
+        var cubicBezier2 = d3.path();
+        cubicBezier2.moveTo(200, 200);
+        cubicBezier2.bezierCurveTo(250, 300, 350, 100, 400, 200);
+
+        var paths = [
+                horizontalPath,
+                verticalPath,
+                diagonalPath,
+                circle,
+                cubicBezier1,
+                cubicBezier2
+        ];
+
+        svg.selectAll(".path")
+           .data(paths)
+           .enter()
+           .append("path")
+           .attr("d", function(d) { return d; })
+           .attr("class", "path");
+
+        svg.nodes = svg.selectAll('.node')
                        .data(nodes)
                        .enter()
                        .append("text")
                        .text(function (d) {
                            return d.letter;
                        })
-                       .attr("class", "node");
+                       .attr("class", "node")
+                       .transition()
+                       .on("start", function repeat() {
 
-        svg.g.path = svg.append("path")
-                      .attr("class", "path");
+                           var transition = d3.active(this);
 
-        var horizontalPath = d3.path();
-
-        horizontalPath.moveTo(0, 0);
-        horizontalPath.lineTo(200, 0);
-
-        var verticalPath = d3.path();
-        verticalPath.moveTo(100, 100);
-        verticalPath.lineTo(100, 300);
-
-        var circle = d3.arc()
-                       .innerRadius(0)
-                       .outerRadius(50)
-                       .startAngle(0)
-                       .endAngle(Math.PI / 2)();
-
-        svg.nodes
-           .transition()
-           .on("start", function repeat() {
-
-               d3.active(this)
-                 .call(transitionToPath, horizontalPath)
-                 .transition()
-                 .call(transitionToPath, verticalPath)
-                 .transition()
-                 .call(transitionToPath, circle)
-                 .transition()
-                 .on("start", repeat)
+                           paths.forEach(function(p) {
+                               transition = transition.call(transitionToPath, p).transition();
+                           });
+                           transition.on("start", repeat);
            });
 
         function transitionToPath(transition, path) {
@@ -119,15 +131,13 @@
                 path : path
             });
 
-            transition
-                    .duration(2000)
-                    .attr("x", function (d) {
-                        return d.x;
-                    })
-                    .attr("y", function (d) {
-                        return d.y;
-                    });
-
+            transition.duration(2000)
+                      .attr("x", function (d) {
+                          return d.x;
+                      })
+                      .attr("y", function (d) {
+                          return d.y;
+                      });
         }
 
     </script>
