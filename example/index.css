@@ -1,10 +1,13 @@
-.node {
-    fill: blue;
+.node > text {
+    alignment-baseline: middle;
     text-anchor: middle;
+    font-size: 2em;
+    fill:darkblue
+
 }
 
 .path {
-    stroke: lightblue;
+    stroke: darkgray;
     stroke-dasharray: 2;
     fill: none;
 }

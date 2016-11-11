@@ -36,27 +36,27 @@
         });
 
         var horizontalPath = d3.path();
-        horizontalPath.moveTo(200, 200);
-        horizontalPath.lineTo(400, 200);
+        horizontalPath.moveTo(270, 240);
+        horizontalPath.lineTo(670, 240);
 
         var verticalPath = d3.path();
-        verticalPath.moveTo(300, 100);
-        verticalPath.lineTo(300, 300);
+        verticalPath.moveTo(470, 40);
+        verticalPath.lineTo(470, 440);
 
         var diagonalPath = d3.path();
-        diagonalPath.moveTo(200, 100);
-        diagonalPath.lineTo(400, 300);
+        diagonalPath.moveTo(270, 40);
+        diagonalPath.lineTo(670, 440);
 
         var circle = d3.path();
-        circle.arc(300, 200, 50, Math.PI, Math.PI * 3);
+        circle.arc(470, 240, 200, Math.PI, Math.PI * 3);
 
         var cubicBezier1 = d3.path();
-        cubicBezier1.moveTo(200, 200);
-        cubicBezier1.bezierCurveTo(250, 100, 350, 300, 400, 200);
+        cubicBezier1.moveTo(270, 240);
+        cubicBezier1.bezierCurveTo(370, 40, 570, 440, 670, 240);
 
         var cubicBezier2 = d3.path();
-        cubicBezier2.moveTo(200, 200);
-        cubicBezier2.bezierCurveTo(250, 300, 350, 100, 400, 200);
+        cubicBezier2.moveTo(270, 240);
+        cubicBezier2.bezierCurveTo(370, 440, 570, 40, 670, 240);
 
         var paths = [
             horizontalPath,
@@ -79,21 +79,26 @@
         svg.nodes = svg.selectAll('.node')
                        .data(nodes)
                        .enter()
-                       .append("text")
-                       .text(function (d) {
-                           return d.letter;
-                       })
-                       .attr("class", "node")
-                       .transition()
-                       .on("start", function repeat() {
+                       .append("g")
+                       .attr("class", "node");
 
-                           var transition = d3.active(this);
+        svg.nodes
+           .append("text")
+           .text(function(d) {
+               return d.letter;
+           });
 
-                           paths.forEach(function (p) {
-                               transition = transition.call(transitionToPath, p).transition();
-                           });
-                           transition.on("start", repeat);
-                       });
+        svg.nodes
+           .transition()
+           .on("start", function repeat() {
+
+               var transition = d3.active(this);
+
+               paths.forEach(function (p) {
+                   transition = transition.call(transitionToPath, p).transition();
+               });
+               transition.on("start", repeat);
+           });
 
         function transitionToPath(transition, path) {
 
@@ -103,11 +108,8 @@
             });
 
             transition.duration(2000)
-                      .attr("x", function (d) {
-                          return d.x;
-                      })
-                      .attr("y", function (d) {
-                          return d.y;
+                      .attr("transform", function (d) {
+                          return "translate(" + d.x + "," + d.y + ")";
                       });
         }
 

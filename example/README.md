@@ -1,1 +1,3 @@
-The example shows how the d3-pathLayout plug-in 'fits' an array of nodes to a custom SVG path.
+The example shows the d3-pathLayout plug-in fitting an array of nodes to custom SVG paths.
+
+Each path is represented by a dotted light grey line, and each node is represented by a letter. For each path, d3-pathLayout positions each node, and the example then transitions the nodes to the calculated position.
