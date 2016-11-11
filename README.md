@@ -5,7 +5,7 @@ d3.js plugin that maps the coordinates of an array of nodes, to points on a give
 The plug-in relies calculations made by the [SVG path interface](https://developer.mozilla.org/en-US/docs/Web/API/SVGPathElement) so may yield 
 different results dependant on browser.
 
-Please see .... for an example.
+Please see [here]()https://gist.github.com/dbarton-uk/82b47b333031b591c41e9890ecbed473) for an example.
 
 ## Installing
 
