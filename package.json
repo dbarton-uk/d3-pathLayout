@@ -1,6 +1,6 @@
 {
   "name": "d3-pathLayout",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "d3.js plugin that maps the coordinates of an array of nodes, to points on a given SVG path string.",
   "keywords": [
     "d3",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-pathLayout.js -- index.js",
-    "test":  "npm run build && tape 'test/**/*-test.js'",
+    "test": "npm run build && tape 'test/**/*-test.js'",
     "uglify": "npm run test && uglifyjs build/d3-pathLayout.js -c -m -o build/d3-pathLayout.min.js",
     "zip": "npm run uglify && zip -j build/d3-pathLayout.zip -- LICENSE README.md build/d3-pathLayout.js build/d3-pathLayout.min.js"
   },
